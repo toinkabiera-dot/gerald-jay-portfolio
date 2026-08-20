@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap');
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --font-sans: var(--app-font-sans);
+  --font-mono: var(--app-font-mono);
+}
+
+:root {
+  /* Deep Blue Base: #1a1a2e */
+  --background: 240 28% 14%;
+  --foreground: 0 0% 100%;
+  
+  --border: 240 28% 18%;
+  --input: 240 28% 14%;
+  --ring: 350 79% 59%;
+  
+  /* Vivid Red Accent: #e94560 */
+  --primary: 350 79% 59%;
+  --primary-foreground: 0 0% 100%;
+  
+  --accent: 350 79% 59%;
+  --accent-foreground: 0 0% 100%;
+  
+  --muted: 240 28% 20%;
+  --muted-foreground: 240 10% 70%;
+
+  --app-font-sans: 'Inter', sans-serif;
+  --app-font-mono: 'Fira Code', monospace;
+
+  /* Neumorphic Shadows based on #1a1a2e */
+  /* Dark: #121220, Light: #22223c */
+  --shadow-neu-flat: 8px 8px 16px #121220, -8px -8px 16px #22223c;
+  --shadow-neu-inset: inset 8px 8px 16px #121220, inset -8px -8px 16px #22223c;
+  --shadow-neu-hover: 12px 12px 24px #121220, -12px -12px 24px #22223c;
+  --shadow-neu-active: inset 4px 4px 8px #121220, inset -4px -4px 8px #22223c;
+  
+  --shadow-neu-sm: 4px 4px 8px #121220, -4px -4px 8px #22223c;
+  --shadow-neu-sm-inset: inset 4px 4px 8px #121220, inset -4px -4px 8px #22223c;
+}
+
+@layer base {
+  body {
+    @apply font-sans antialiased bg-background text-foreground selection:bg-primary selection:text-white;
+  }
+}
+
+@layer utilities {
+  .neu-flat {
+    box-shadow: var(--shadow-neu-flat);
+    background: hsl(var(--background));
+  }
+
+  .neu-inset {
+    box-shadow: var(--shadow-neu-inset);
+    background: hsl(var(--background));
+  }
+  
+  .neu-panel {
+    box-shadow: var(--shadow-neu-flat);
+    background: hsl(var(--background));
+    border: 1px solid rgba(255,255,255,0.02);
+  }
+
+  .neu-button {
+    box-shadow: var(--shadow-neu-flat);
+    background: hsl(var(--background));
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255,255,255,0.02);
+  }
+
+  .neu-button:hover {
+    box-shadow: var(--shadow-neu-hover);
+    transform: translateY(-2px);
+  }
+
+  .neu-button:active {
+    box-shadow: var(--shadow-neu-active);
+    transform: translateY(1px);
+    border-color: transparent;
+  }
+  
+  .neu-button-primary {
+    background: hsl(var(--primary));
+    box-shadow: 6px 6px 12px #121220, -6px -6px 12px #22223c;
+    color: white;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .neu-button-primary:hover {
+    box-shadow: 8px 8px 16px #121220, -8px -8px 16px #22223c;
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+  }
+  
+  .neu-button-primary:active {
+    box-shadow: inset 4px 4px 8px rgba(0,0,0,0.3), inset -4px -4px 8px rgba(255,255,255,0.1);
+    transform: translateY(1px);
+  }
+
+  .neu-input {
+    box-shadow: var(--shadow-neu-inset);
+    background: hsl(var(--background));
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+  }
+
+  .neu-input:focus {
+    outline: none;
+    border-color: hsl(var(--primary) / 0.5);
+    box-shadow: var(--shadow-neu-inset), 0 0 10px hsl(var(--primary) / 0.2);
+  }
+}
